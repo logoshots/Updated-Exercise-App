@@ -1,14 +1,16 @@
 import { useState } from "react";
 import RepetitionExercise from "./components/RepetitionExercise";
 import DurationExercise from "./components/DurationExercise";
+import WeightExercise from "./components/WeightExercise";
 
 function App() {
     const [selectedExercise, setSelectedExercise] = useState(null);
 
     const exercises = [
-        { name: "Pushups", type: "repetition" },
         { name: "Running", type: "duration" },
-        { name: "Planking", type: "duration" }
+        { name: "Planking", type: "duration" },
+        { name: "Pushups", type: "repetition" },
+        { name: "Lifting", type: "weights"}
     ];
 
     if (selectedExercise === null) {
@@ -33,10 +35,14 @@ function App() {
         <div>
             <h1>{selectedExercise.name}</h1>
 
-            {selectedExercise.type === "repetition" ? (
+            {selectedExercise.type === "repetition" && (
                 <RepetitionExercise name={selectedExercise.name} />
-            ) : (
+            )}
+            {selectedExercise.type === "duration" && (
                 <DurationExercise name={selectedExercise.name} />
+            )}
+            {selectedExercise.type === "weights" && (
+                <WeightExercise name={selectedExercise.name} />
             )}
         </div>
     );
